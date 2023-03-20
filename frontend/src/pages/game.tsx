@@ -1,7 +1,9 @@
-// import { useState, useEffect } from 'react'
+import { useState } from 'react'
 // import { simonSaysService } from '../services/simonsays.service'
 
-// import GameBoard from '../cmps/GameBoard'
+import GameBoard from '../cmps/game-board'
+import Modal from '../cmps/modal'
+import { gameService } from '../services/game.service'
 // import LostModal from '../cmps/LostModal'
 // import InstructionsModal from '../cmps/InstructionsModal'
 // import UtilityButtons from '../cmps/UtilityButtons'
@@ -15,6 +17,7 @@
 // }
 
 function Game() {
+    const [isModalShown, setIsModalShown] = useState<boolean>(false)
     // const [highScore, setHighScore] = useState<number>(0)
     // const [isInstructionsOpen, setIsInstructionsOpen] = useState<Boolean>(true)
     // const [gameState, setGameState] = useState<IState['gameState']>({ isPlaying: false, isLost: false, score: 0 })
@@ -65,15 +68,22 @@ function Game() {
     //     setGameState({ score: 0, isLost: false, isPlaying: true })
     // }
 
+    function onGameStart() {
+        gameService.startColorSeq()
+    }
     return <div className='simon-says'>
-            go
-            {/* <p className='high-score'>High Score: {highScore}</p>
+        <span>Score: </span>
+        <span>High Score: </span>
+        <button>Restart</button>
+        <GameBoard />
+        {isModalShown && <Modal setIsModalShown={setIsModalShown} />}
+        {/* <p className='high-score'>High Score: {highScore}</p>
             {isInstructionsOpen && <InstructionsModal onExitInstructions={onExitInstructions} />}
             <GameBoard gameState={gameState} setGameState={setGameState} onLose={onLose} />
             {gameState.isLost && <LostModal score={gameState.score} onStart={onStart} />}
             <UtilityButtons onInstructions={onInstructions} onRestart={onRestart} /> */}
-        </div>
-    
+    </div>
+
 }
 
 export default Game

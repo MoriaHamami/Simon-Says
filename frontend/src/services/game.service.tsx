@@ -12,7 +12,7 @@ function startColorSeq() {
 
 function getRandColor() {
     const colors = ['red', 'green', 'yellow', 'blue']
-    const colorIdx = utilService.getRandomIntInclusive(1, 4)
+    const colorIdx = utilService.getRandomIntInclusive(0, 3)
     const color = colors[colorIdx]
     return color
 }

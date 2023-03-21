@@ -68,9 +68,13 @@ function Game() {
     //     setGameState({ score: 0, isLost: false, isPlaying: true })
     // }
 
-    function onGameStart() {
-        gameService.startColorSeq()
-    }
+
+
+    
+    // function onGameStart() {
+    //     gameService.startColorSeq()
+    // }
+
     return <div className='simon-says'>
         <span>Score: </span>
         <span>High Score: </span>

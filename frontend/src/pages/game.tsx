@@ -18,7 +18,8 @@ import { gameService } from '../services/game.service'
 
 function Game() {
     const [isModalShown, setIsModalShown] = useState<boolean>(false)
-    // const [highScore, setHighScore] = useState<number>(0)
+    const [highScore, setHighScore] = useState<number>(0)
+    const [score, setScore] = useState<number>(0)
     // const [isInstructionsOpen, setIsInstructionsOpen] = useState<Boolean>(true)
     // const [gameState, setGameState] = useState<IState['gameState']>({ isPlaying: false, isLost: false, score: 0 })
 
@@ -69,17 +70,27 @@ function Game() {
     // }
 
 
+    function updateScore(num: number) {
+        switch (num) {
+            case 1:
+                setScore(prevScore=> prevScore+1)
+                break;
+            case 0:
+                setScore(0)
+                break;
+        }
+    }
 
-    
+
     // function onGameStart() {
     //     gameService.startColorSeq()
     // }
 
     return <div className='simon-says'>
-        <span>Score: </span>
-        <span>High Score: </span>
+        <span>Score: {score}</span>
+        <span>High Score: {highScore}</span>
         <button>Restart</button>
-        <GameBoard />
+        <GameBoard updateScore={updateScore} />
         {isModalShown && <Modal setIsModalShown={setIsModalShown} />}
         {/* <p className='high-score'>High Score: {highScore}</p>
             {isInstructionsOpen && <InstructionsModal onExitInstructions={onExitInstructions} />}

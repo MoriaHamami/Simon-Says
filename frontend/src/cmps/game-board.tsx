@@ -14,7 +14,11 @@ const audioMap: { [key: string]: HTMLAudioElement } = {
     blue: new Audio(blueSoundUrl)
 }
 
-function GameBoard() {
+interface IProps {
+    updateScore: (num:number) => void
+}
+
+function GameBoard({ updateScore }: IProps) {
     const [markedColor, setMarkedColor] = useState<string>('')
     const [simonSeq, setSimonSeq] = useState<string[]>([])
     const [userSeq, setUserSeq] = useState<string[]>([])
@@ -54,6 +58,7 @@ function GameBoard() {
             setMarkedColor('')
             // If the whole simon seq was correct
             if (userSeq.length === simonSeq.length) {
+                updateScore(1)
                 setUserSeq([])
                 setIsUserTurn(false)
             }
@@ -67,6 +72,7 @@ function GameBoard() {
             setIsUserTurn(false)
             setUserSeq([])
             setSimonSeq([])
+            updateScore(0)
             // show modal later
         }
     }

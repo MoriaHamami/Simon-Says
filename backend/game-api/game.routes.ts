@@ -2,9 +2,8 @@ const express = require('express')
 const gameController = require('./game.controller')
 const router = express.Router()
 
-router.get('/', gameController.getCars)
-router.post('/', gameController.addCar)
-router.put('/:id', gameController.updateCar)
+router.get('/', gameController.getScore)
+router.put('/:score', gameController.updateScore)
 
 module.exports = router
 

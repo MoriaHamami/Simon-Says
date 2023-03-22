@@ -21,11 +21,9 @@ if (process.env.NODE_ENV === 'production') {
     app.use(cors(corsOptions))
 }
 
-const gameRoutes = require('./api/game/game.routes')
+const gameRoutes = require('./game-api/game.routes')
 
 // routes
-// app.use('/api/auth', authRoutes)
-// app.use('/api/user', userRoutes)
 app.use('/api/game', gameRoutes)
 
 // Make every server-side-route to match the index.html
@@ -35,9 +33,4 @@ app.get('/**', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'))
 })
 
-
-const logger = require('./services/logger.service')
-const port = process.env.PORT || 3030
-http.listen(port, () => {
-    logger.info('Server is running on port: ' + port)
-})
+http.listen(3030, () => console.log('Server listening on port 3030!'))

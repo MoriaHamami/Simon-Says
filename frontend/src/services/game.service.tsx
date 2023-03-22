@@ -9,8 +9,8 @@ export const gameService = {
     getRandColor,
 }
 
-async function query(filterBy = { txt: '', price: 0 }) {
-    return httpService.get(STORAGE_KEY, filterBy)
+async function query() {
+    return httpService.get(STORAGE_KEY)
 }
 
 async function save(score: number) {

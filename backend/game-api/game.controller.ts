@@ -1,10 +1,10 @@
-const gameService = require('./game.service.js')
+const gameService = require('./game.service.ts')
 // const fs = require('fs')
 // var scores = require('../data/scores.json')
 
 async function getScore(req, res) {
   try {
-    const scores = await gameService.query()
+    const scores = await gameService.query(req.query.userId)
     res.send(scores)
   } catch (err) {
     throw err
@@ -17,7 +17,7 @@ async function getScore(req, res) {
 
 async function updateScore(req, res) {
   try {
-    const savedScore = await gameService.save(req.query.score)
+    const savedScore = await gameService.save(req.query.userId, req.query.score)
     res.send(savedScore)
   } catch (err) {
     throw err

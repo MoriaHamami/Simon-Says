@@ -6,16 +6,16 @@ module.exports = {
     save
 }
 
-function query() {
-    return Promise.resolve(highScore)
-}
+// function query() {
+//     return Promise.resolve(highScore)
+// }
 
-function save(updatedScore: number) {
-    highScore = updatedScore
-    return _writeCarsToFile()
-}
+// function save(updatedScore) {
+//     highScore = updatedScore
+//     return _writeCarsToFile()
+// }
 
-function _writeCarsToFile() {
+function _writeScoresToFile() {
     return new Promise((res, rej) => {
         const data = JSON.stringify(highScore, null, 2)
         fs.writeFile('data/score.json', data, (err) => {
@@ -25,46 +25,22 @@ function _writeCarsToFile() {
     })
 }
 
+function query(userId: any) {
+  return highScore.find((score: { id: any }) => score.id === userId)
+}
+
+function save(userId: string, score: number) {
+  // console.log('userId, score:', userId, score)
+  const userIdx = highScore.findIndex((score: { id: string }) => score.id === userId)
+  const user = highScore[userIdx]
+  if (user.score > score) return user.score
+
+  highScore[userIdx].score = score
+  _writeScoresToFile()
+  return score
+}
 
 
 
 
-// const dbService = require('../../services/db.service')
-// const ObjectId = require('mongodb').ObjectId
 
-// async function query() {
-//     try {
-//         const collection = await dbService.getCollection('car')
-//         var score = await collection.find().toArray()
-//         return score
-//     } catch (err) {
-//         throw err
-//     }
-// }
-
-// async function add(score: number) {
-//     try {
-//         const collection = await dbService.getCollection('score')
-//         await collection.insertOne(score)
-//         return score
-//     } catch (err) {
-//         throw err
-//     }
-// }
-
-// async function update(score: number) {
-//     try {
-//         const scoreToSave = { score }
-//         const collection = await dbService.getCollection('score')
-//         await collection.updateOne({ _id: ObjectId(score._id) }, { $set: scoreToSave })
-//         return score
-//     } catch (err) {
-//         throw err
-//     }
-// }
-
-// module.exports = {
-//     query,
-//     add,
-//     update,
-// }

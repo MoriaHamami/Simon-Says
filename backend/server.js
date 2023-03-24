@@ -21,7 +21,7 @@ if (process.env.NODE_ENV === 'production') {
     app.use(cors(corsOptions))
 }
 
-const gameRoutes = require('./game-api/game.routes')
+const gameRoutes = require('./game-api/game.routes.ts')
 
 // routes
 app.use('/api/game', gameRoutes)

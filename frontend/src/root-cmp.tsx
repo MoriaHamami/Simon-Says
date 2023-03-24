@@ -8,7 +8,6 @@ function RootCmp() {
             <Route path="/" element={<Home />} />
             <Route path="/game" element={<Game />} />
         </Routes>
-
     </main>
 }
 

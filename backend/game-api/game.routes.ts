@@ -1,5 +1,5 @@
 const express = require('express')
-const gameController = require('./game.controller')
+const gameController = require('./game.controller.ts')
 const router = express.Router()
 
 router.get('/', gameController.getScore)

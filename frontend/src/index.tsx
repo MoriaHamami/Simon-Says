@@ -9,6 +9,5 @@ root.render(
         <Router>
             <RootCmp />
         </Router>
-
 )
 

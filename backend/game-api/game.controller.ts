@@ -1,11 +1,19 @@
 const gameService = require('./game.service.ts')
+const userService = require('../services/user.service.ts')
 // const fs = require('fs')
 // var scores = require('../data/scores.json')
 
+module.exports = {
+  getScore,
+  updateScore
+}
+
 async function getScore(req, res) {
+  console.log('get from back:')
   try {
-    const scores = await gameService.query(req.query.userId)
-    res.send(scores)
+    // const userId = userService.getUserId()
+    const score = await gameService.query(req.query.userId)
+    res.status(200).json(score)
   } catch (err) {
     throw err
   }
@@ -16,9 +24,13 @@ async function getScore(req, res) {
 // }
 
 async function updateScore(req, res) {
+    console.log('update through back:')
   try {
-    const savedScore = await gameService.save(req.query.userId, req.query.score)
-    res.send(savedScore)
+    // const userId = userService.getUserId()
+  // console.log('req.query.userId:', req.query)
+
+    const savedScore = await gameService.save(req.query.userId, req.params.score)
+    res.status(200).json(savedScore)
   } catch (err) {
     throw err
   }
@@ -34,15 +46,7 @@ async function updateScore(req, res) {
 //   return score
 // }
 
-// function _writeScoresToFile() {
-//   return new Promise((res, rej) => {
-//     const data = JSON.stringify(scores, null, 2)
-//     fs.writeFile('data/scores.json', data, (err: any) => {
-//       if (err) return rej(err)
-//       res('')
-//     })
-//   })
-// }
+
 
 
 

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 // import { simonSaysService } from '../services/simonsays.service'
 
 import GameBoard from '../cmps/game-board'
@@ -10,6 +10,19 @@ function Game() {
     const [highScore, setHighScore] = useState<number>(0)
     const [score, setScore] = useState<number>(0)
 
+    useEffect(() => {
+        getHighScore()
+    }, [])
+
+    async function getHighScore() {
+        const highScore = await gameService.query()
+        setHighScore(highScore)
+    }
+
+    async function updateHighScore(score: number) {
+        const highScore =  await gameService.save(score)
+        setHighScore(highScore)
+    }
 
     function updateScore(num: number) {
         switch (num) {
@@ -31,7 +44,7 @@ function Game() {
         <span>Score: {score}</span>
         <span>High Score: {highScore}</span>
         <button>Restart</button>
-        <GameBoard updateScore={updateScore} />
+        <GameBoard updateScore={updateScore} updateHighScore={updateHighScore}/>
         {isModalShown && <Modal setIsModalShown={setIsModalShown} />}
         {/* <p className='high-score'>High Score: {highScore}</p>
             {isInstructionsOpen && <InstructionsModal onExitInstructions={onExitInstructions} />}

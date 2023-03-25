@@ -13,8 +13,8 @@ export const httpService = {
     get(endpoint: string, data?: any) {
         return ajax(endpoint, 'GET', data)
     },
-    post(endpoint: string, data: any) {
-        return ajax(endpoint, 'POST', data)
+    put(endpoint: string, data: any) {
+        return ajax(endpoint, 'PUT', data)
     }
 }
 
@@ -24,7 +24,7 @@ async function ajax(endpoint: string, method = 'GET', data = null) {
             url: `${BASE_URL}${endpoint}`,
             method,
             data,
-            params: (method === 'GET') ? data : null
+            params: data 
         })
         return res.data
     } catch (err : any) {

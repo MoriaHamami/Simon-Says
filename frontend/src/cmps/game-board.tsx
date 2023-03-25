@@ -15,10 +15,11 @@ const audioMap: { [key: string]: HTMLAudioElement } = {
 }
 
 interface IProps {
-    updateScore: (num:number) => void
+    updateScore: (num:number) => void,
+    updateHighScore: (num:number) => void
 }
 
-function GameBoard({ updateScore }: IProps) {
+function GameBoard({ updateScore, updateHighScore }: IProps) {
     const [markedColor, setMarkedColor] = useState<string>('')
     const [simonSeq, setSimonSeq] = useState<string[]>([])
     const [userSeq, setUserSeq] = useState<string[]>([])
@@ -58,6 +59,8 @@ function GameBoard({ updateScore }: IProps) {
             setMarkedColor('')
             // If the whole simon seq was correct
             if (userSeq.length === simonSeq.length) {
+                const currScore = simonSeq.length 
+                updateHighScore(currScore)
                 updateScore(1)
                 setUserSeq([])
                 setIsUserTurn(false)
@@ -69,6 +72,8 @@ function GameBoard({ updateScore }: IProps) {
             await utilService.wait(500)
             setMarkedColor('')
             // If the user is incorrect, the game restarts
+            const currScore = simonSeq.length - 1
+            updateHighScore(currScore)
             setIsUserTurn(false)
             setUserSeq([])
             setSimonSeq([])
@@ -88,7 +93,6 @@ function GameBoard({ updateScore }: IProps) {
             <button className={getClassName('red')} onClick={() => colorSelected('red')}>Red</button>
             <button className={getClassName('blue')} onClick={() => colorSelected('blue')}>Blue</button>
             <button className={getClassName('yellow')} onClick={() => colorSelected('yellow')}>Yellow</button>
-            {/* {'simonSeq:' + JSON.stringify(simonSeq)} */}
         </div>
     )
 

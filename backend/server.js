@@ -24,7 +24,7 @@ if (process.env.NODE_ENV === 'production') {
 const gameRoutes = require('./game-api/game.routes.ts')
 
 // routes
-app.use('/api/game', gameRoutes)
+app.use('/api/score', gameRoutes)
 
 // Make every server-side-route to match the index.html
 // so when requesting http://localhost:3030/index.html/game/123 it will still respond with

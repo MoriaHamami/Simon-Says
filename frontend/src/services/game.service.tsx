@@ -1,5 +1,6 @@
 import { utilService } from "./util.service"
 import { httpService } from './http.service'
+import { userService } from "./user.service"
 
 const STORAGE_KEY = 'score'
 
@@ -10,15 +11,17 @@ export const gameService = {
 }
 
 async function query() {
-    return httpService.get(STORAGE_KEY)
+    const userId = userService.getUserId()
+    return httpService.get(STORAGE_KEY, {userId})
 }
 
 async function save(score: number) {
-    try{
-        let savedScore
-        savedScore = await httpService.post('score', score)
+    try {
+        const userId = userService.getUserId()
+        // console.log('userId:', userId)
+        let savedScore = await httpService.put(`${STORAGE_KEY}/${score}`, {userId})
         return savedScore
-    } catch(err) {
+    } catch (err) {
         throw err
     }
 }

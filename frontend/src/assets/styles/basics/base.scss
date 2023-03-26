@@ -12,6 +12,9 @@ body {
     margin: 0;
     max-width: 1024px;
     margin: auto;
+    background-color: $almost-black;
+    color: $almost-white;
+    padding: $base-padding;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -26,6 +29,11 @@ img {
 
 p {
     margin: 0;
+}
+
+a{
+    text-decoration: none;
+    color: $almost-white;
 }
 
 

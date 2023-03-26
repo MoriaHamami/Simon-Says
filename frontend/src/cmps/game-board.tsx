@@ -1,6 +1,11 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import { gameService } from '../services/game.service'
 import { utilService } from '../services/util.service'
+import greenImg from '../assets/imgs/green.png'
+import redImg from '../assets/imgs/red.png'
+import blueImg from '../assets/imgs/blue.png'
+import yellowImg from '../assets/imgs/yellow.png'
+
 const redSoundUrl = require('../assets/audio/redSound.mp3')
 const blueSoundUrl = require('../assets/audio/blueSound.mp3')
 const greenSoundUrl = require('../assets/audio/greenSound.mp3')
@@ -15,8 +20,8 @@ const audioMap: { [key: string]: HTMLAudioElement } = {
 }
 
 interface IProps {
-    updateScore: (num:number) => void,
-    updateHighScore: (num:number) => void
+    updateScore: (num: number) => void,
+    updateHighScore: (num: number) => void
 }
 
 function GameBoard({ updateScore, updateHighScore }: IProps) {
@@ -34,6 +39,7 @@ function GameBoard({ updateScore, updateHighScore }: IProps) {
     async function playSeq() {
         const nextCorrectColor = gameService.getRandColor()
         simonSeq.push(nextCorrectColor)
+        console.log('simonSeq:', simonSeq)
         for (let i = 0; i < simonSeq.length; i++) {
             await utilService.wait(500)
             const currColor = simonSeq[i]
@@ -52,34 +58,48 @@ function GameBoard({ updateScore, updateHighScore }: IProps) {
         const simonsColor = simonSeq[userSeq.length - 1]
 
         if (selectedColor === simonsColor) {
-            setMarkedColor(selectedColor)
-            const currSound = audioMap[selectedColor]
-            currSound.play()
-            await utilService.wait(500)
-            setMarkedColor('')
+            await correctUserSeq(simonsColor)
             // If the whole simon seq was correct
             if (userSeq.length === simonSeq.length) {
-                const currScore = simonSeq.length 
-                updateHighScore(currScore)
-                updateScore(1)
-                setUserSeq([])
-                setIsUserTurn(false)
+                userSeqComplete()
             }
         } else {
-            setMarkedColor(simonsColor)
-            const currSound = new Audio(loseSoundUrl)
-            currSound.play()
-            await utilService.wait(500)
-            setMarkedColor('')
-            // If the user is incorrect, the game restarts
-            const currScore = simonSeq.length - 1
-            updateHighScore(currScore)
-            setIsUserTurn(false)
-            setUserSeq([])
-            setSimonSeq([])
-            updateScore(0)
-            // show modal later
+            wrongUserSeq(simonsColor)
         }
+    }
+
+    async function correctUserSeq(selectedColor: string) {
+        setMarkedColor(selectedColor)
+        const currSound = audioMap[selectedColor]
+        currSound.play()
+        await utilService.wait(500)
+        setMarkedColor('')
+    }
+
+    function userSeqComplete() {
+        const currScore = simonSeq.length
+        // console.log('simonSeq.length:', simonSeq.length)
+        updateHighScore(currScore)
+        updateScore(1)
+        setUserSeq([])
+        setIsUserTurn(false)
+    }
+
+    async function wrongUserSeq(simonsColor: string) {
+        setMarkedColor(simonsColor)
+        const currSound = new Audio(loseSoundUrl)
+        currSound.play()
+        await utilService.wait(500)
+        setMarkedColor('')
+        // Restart game 
+        const currScore = simonSeq.length - 1
+        updateHighScore(currScore)
+        setIsUserTurn(false)
+        setUserSeq([])
+        setSimonSeq([])
+        updateScore(0)
+
+        // show modal later
     }
 
     function getClassName(color: string) {
@@ -89,10 +109,10 @@ function GameBoard({ updateScore, updateHighScore }: IProps) {
 
     return (
         <div className="game-board">
-            <button className={getClassName('green')} onClick={() => colorSelected('green')}>Green</button>
-            <button className={getClassName('red')} onClick={() => colorSelected('red')}>Red</button>
-            <button className={getClassName('blue')} onClick={() => colorSelected('blue')}>Blue</button>
-            <button className={getClassName('yellow')} onClick={() => colorSelected('yellow')}>Yellow</button>
+            <button className={getClassName('blue')} onClick={() => colorSelected('blue')}><img src={blueImg} alt='green' /></button>
+            <button className={getClassName('green')} onClick={() => colorSelected('green')}><img src={greenImg} alt='green' /></button>
+            <button className={getClassName('red')} onClick={() => colorSelected('red')}><img src={redImg} alt='green' /></button>
+            <button className={getClassName('yellow')} onClick={() => colorSelected('yellow')}><img src={yellowImg} alt='green' /></button>
         </div>
     )
 

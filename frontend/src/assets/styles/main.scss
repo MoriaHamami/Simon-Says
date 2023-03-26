@@ -5,5 +5,9 @@
 @import "basics/base";
 @import "basics/forms";
 
+// Views
+@import "views/home";
+@import "views/game";
+
 // Cmps
 @import "cmps/game-board";

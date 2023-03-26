@@ -1,0 +1,35 @@
+.home{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 40px - 40px - 20px);
+    margin: 20px;
+    padding: 10px;
+    border: 2px solid lightgray;
+    border-radius: 20px;
+    >*{
+        margin-bottom: 15px;
+    }
+ h1{
+    font-size: 4rem;
+}  
+h2{
+     font-size: 2rem;
+     
+    } 
+ p{
+
+ }
+ a{
+     font-size: 1.5rem;
+background: $almost-white;
+        color: $almost-black;
+        border-radius: 5px;
+        padding: 2px 5px;
+        &:hover{
+            opacity: 0.8
+        }
+ }
+}

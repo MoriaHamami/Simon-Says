@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import GameBoard from '../cmps/game-board'
 import Modal from '../cmps/modal'
 import { gameService } from '../services/game.service'
+import { Link } from 'react-router-dom'
 
 function Game() {
     const [isModalShown, setIsModalShown] = useState<boolean>(false)
@@ -40,12 +41,12 @@ function Game() {
     //     gameService.startColorSeq()
     // }
 
-    return <div className='simon-says'>
-        <span>Score: {score}</span>
-        <span>High Score: {highScore}</span>
-        <button>Restart</button>
+    return <div className='game'>
+        <div className='score'>Score: {score}</div>
+        <div className='high-score'>High Score: {highScore}</div>
         <GameBoard updateScore={updateScore} updateHighScore={updateHighScore}/>
         {isModalShown && <Modal setIsModalShown={setIsModalShown} />}
+        <Link to='/' className='quit-btn'>Quit</Link>
         {/* <p className='high-score'>High Score: {highScore}</p>
             {isInstructionsOpen && <InstructionsModal onExitInstructions={onExitInstructions} />}
             <GameBoard gameState={gameState} setGameState={setGameState} onLose={onLose} />

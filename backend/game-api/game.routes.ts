@@ -6,5 +6,3 @@ router.get('/', gameController.getScore)
 router.put('/:score', gameController.updateScore)
 
 module.exports = router
-
-// export {}

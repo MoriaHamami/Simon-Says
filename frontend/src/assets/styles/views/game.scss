@@ -1,0 +1,19 @@
+.game{
+    display: flex;
+    flex-direction: column;
+
+    .score{
+        font-size: 1.5rem;
+    }
+    
+    .quit-btn{
+        align-self: end;
+        &:hover{
+            opacity: 0.8;
+        }
+        // background: $almost-white;
+        // color: $almost-black;
+        // border-radius: 5px;
+        // padding: 2px 5px;
+    }
+}

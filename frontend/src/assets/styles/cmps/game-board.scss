@@ -1,15 +1,47 @@
-.red-btn.highlight{
-    background-color: red;
+.game-board{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    button{
+        display: flex;
+        padding: 0;
+        background: none;
+        border: none;
+    }
+    
+    img{
+        max-height: 200px;
+        max-width: 200px;
+    }
+
 }
 
-.green-btn.highlight{
-    background-color: green;
+.red-btn {
+    justify-content: end;
+    &.highlight img{
+        opacity: 0.4;
+        // background-color: $red;
+    }
 }
 
-.yellow-btn.highlight{
-    background-color: yellow;
+.green-btn {
+    &.highlight img{
+        opacity: 0.4;
+        // background-color: $green;
+    }
 }
 
-.blue-btn.highlight{
-    background-color: blue;
+.yellow-btn {
+    &.highlight img{
+        opacity: 0.4;
+        // background-color: $yellow;
+    }
+}
+
+.blue-btn {
+    justify-content: end;
+    &.highlight img{
+        opacity: 0.4;
+        // background-color: $blue;
+    }
 }

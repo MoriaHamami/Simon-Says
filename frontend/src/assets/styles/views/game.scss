@@ -1,6 +1,11 @@
 .game{
     display: flex;
     flex-direction: column;
+    padding: $base-padding;
+    width: 100vw;
+    height: 100vh;
+    @include background-img("../../imgs/bg2.jpeg");
+    color: $almost-black;
 
     .score{
         font-size: 1.5rem;
@@ -8,6 +13,7 @@
     
     .quit-btn{
         align-self: end;
+        color: $almost-black;
         &:hover{
             opacity: 0.8;
         }

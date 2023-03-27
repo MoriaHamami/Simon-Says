@@ -1,7 +1,7 @@
 .game-board{
     display: grid;
     grid-template-columns: 1fr 1fr;
-
+    
     button{
         display: flex;
         padding: 0;
@@ -12,6 +12,28 @@
     img{
         max-height: 200px;
         max-width: 200px;
+    }
+
+    .modal{
+        z-index: 1;
+        position: fixed;
+        // margin: auto 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: gray;
+        padding: 10px;
+        border: 1px solid white;
+        border-radius: 5px;
+        box-shadow: 0px 4px 6px 1px #00000066;
+        margin: 20%;
+        inset: 0;
+        button{
+            background-color: $almost-white;
+            padding: 5px;
+            border-radius: 2px;
+        }
     }
 
 }

@@ -5,6 +5,7 @@ import greenImg from '../assets/imgs/green.png'
 import redImg from '../assets/imgs/red.png'
 import blueImg from '../assets/imgs/blue.png'
 import yellowImg from '../assets/imgs/yellow.png'
+import Modal from '../cmps/modal'
 
 const redSoundUrl = require('../assets/audio/redSound.mp3')
 const blueSoundUrl = require('../assets/audio/blueSound.mp3')
@@ -29,6 +30,7 @@ function GameBoard({ updateScore, updateHighScore }: IProps) {
     const [simonSeq, setSimonSeq] = useState<string[]>([])
     const [userSeq, setUserSeq] = useState<string[]>([])
     const [isUserTurn, setIsUserTurn] = useState<boolean>(false)
+    const [isModalShown, setIsModalShown] = useState<boolean>(false)
     // const intervalId = useRef<any>(null)
     // const timeoutId = useRef<any>(null)
 
@@ -39,13 +41,14 @@ function GameBoard({ updateScore, updateHighScore }: IProps) {
     async function playSeq() {
         const nextCorrectColor = gameService.getRandColor()
         simonSeq.push(nextCorrectColor)
-        console.log('simonSeq:', simonSeq)
+        // console.log('simonSeq:', simonSeq)
         for (let i = 0; i < simonSeq.length; i++) {
             await utilService.wait(500)
             const currColor = simonSeq[i]
             setMarkedColor(currColor)
             const currSound = audioMap[currColor]
             currSound.play()
+            // console.log('currColor:', currSound)
             await utilService.wait(500)
             setMarkedColor('')
         }
@@ -53,7 +56,7 @@ function GameBoard({ updateScore, updateHighScore }: IProps) {
     }
 
     async function colorSelected(selectedColor: string) {
-        if (!isUserTurn) return
+        if (!isUserTurn || isModalShown) return
         userSeq.push(selectedColor)
         const simonsColor = simonSeq[userSeq.length - 1]
 
@@ -94,12 +97,11 @@ function GameBoard({ updateScore, updateHighScore }: IProps) {
         // Restart game 
         const currScore = simonSeq.length - 1
         updateHighScore(currScore)
-        setIsUserTurn(false)
+        // setIsUserTurn(false)
         setUserSeq([])
         setSimonSeq([])
         updateScore(0)
-
-        // show modal later
+        setIsModalShown(true)
     }
 
     function getClassName(color: string) {
@@ -109,6 +111,7 @@ function GameBoard({ updateScore, updateHighScore }: IProps) {
 
     return (
         <div className="game-board">
+            {isModalShown && <Modal setIsModalShown={setIsModalShown} btnStr='Retry' txt='You lose! Dare to try again?' func={playSeq}/>}
             <button className={getClassName('blue')} onClick={() => colorSelected('blue')}><img src={blueImg} alt='green' /></button>
             <button className={getClassName('green')} onClick={() => colorSelected('green')}><img src={greenImg} alt='green' /></button>
             <button className={getClassName('red')} onClick={() => colorSelected('red')}><img src={redImg} alt='green' /></button>

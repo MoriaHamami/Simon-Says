@@ -1,0 +1,7 @@
+@mixin background-img($img-url) {
+    position: relative;
+    background-image: linear-gradient(to top, rgba(123, 251, 251, 0.459), rgba(153, 214, 255, 0.492)), url($img-url);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

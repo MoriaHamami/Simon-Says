@@ -1,4 +1,11 @@
-.home{
+.home {
+    padding: $base-padding;
+    width: 100vw;
+    height: 100vh;
+    @include background-img("../../imgs/bg1.jpeg");
+}
+
+.home-txt {
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -9,27 +16,31 @@
     padding: 10px;
     border: 2px solid lightgray;
     border-radius: 20px;
-    >*{
+    color: $almost-black;
+
+    >* {
         margin-bottom: 15px;
     }
- h1{
-    font-size: 4rem;
-}  
-h2{
-     font-size: 2rem;
-     
-    } 
- p{
 
- }
- a{
-     font-size: 1.5rem;
-background: $almost-white;
+    h1 {
+        font-size: 4rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+
+    }
+
+    a {
+        font-size: 1.5rem;
+        background: $almost-white;
         color: $almost-black;
         border-radius: 5px;
         padding: 2px 5px;
-        &:hover{
+        border: 1px solid gray;
+
+        &:hover {
             opacity: 0.8
         }
- }
+    }
 }

@@ -38,7 +38,6 @@ function save(userId, newScore) {
     console.log('newScore:', newScore)
     if (+highScore.score > +newScore) return highScore.score
     // Update the new highscore
-    // console.log('updating new highscore...')
     highScores[scoreIdx].score = newScore
     _writeScoresToFile()
     return newScore

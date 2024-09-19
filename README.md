@@ -3,9 +3,9 @@
 ## Overview
 This is a **Simon Says** game built with a modern tech stack, offering an interactive and responsive experience. The game challenges players to repeat sequences of colors and sounds that get progressively longer. It’s designed with a **React** frontend and **Sass** for styling. The game tracks high scores using a **TypeScript** backend that stores high scores in a **JSON** file and communicates via **Axios** for API requests.
 
-<img src="frontend/src/assets/img/readme/mobile1.png" width="50%" style="float: left"/><img src="frontend/src/assets/img/readme/mobile2.png" width="50%" style="float: left;"/>
+<img src="frontend/src/assets/imgs/mobile1.png" width="50%" style="float: left"/><img src="frontend/src/assets/imgs/mobile2.png" width="50%" style="float: left;"/>
 
-<img src="frontend/src/assets/img/readme/desktop1.png" width="50%" style="float: left;"/><img src="frontend/src/assets/img/readme/desktop2.png" width="50%" style="float: left;"/>
+<img src="frontend/src/assets/imgs/desktop1.png" width="50%" style="float: left;"/><img src="frontend/src/assets/imgs/desktop2.png" width="50%" style="float: left;"/>
 
 ## Features
 - **Interactive Gameplay**: Players repeat color sequences that increase in difficulty with each round.

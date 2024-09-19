@@ -3,9 +3,7 @@
 ## Overview
 This is a **Simon Says** game built with a modern tech stack, offering an interactive and responsive experience. The game challenges players to repeat sequences of colors and sounds that get progressively longer. It’s designed with a **React** frontend and **Sass** for styling. The game tracks high scores using a **TypeScript** backend that stores high scores in a **JSON** file and communicates via **Axios** for API requests.
 
-<img src="frontend/src/assets/imgs/desktop1.png" height="50%" style="float: left;"/>
-
-<img src="frontend/src/assets/imgs/mobile1.png" height="20%" style="float: left"/><img src="frontend/src/assets/imgs/mobile2.png" height="20%" style="float: right;"/>
+<img src="frontend/src/assets/imgs/desktop1.png" height="50%"/>
 
 ## Features
 - **Interactive Gameplay**: Players repeat color sequences that increase in difficulty with each round.
@@ -14,7 +12,7 @@ This is a **Simon Says** game built with a modern tech stack, offering an intera
 - **Responsive Design**: The layout adjusts seamlessly to different screen sizes for an optimal experience.
 - **React State Management**: The game’s logic, including the sequence, user input, and score, is managed using **React** hooks and state.
 
-<img src="frontend/src/assets/imgs/desktop2.png" height="50%" style="float: right;"/>
+<img src="frontend/src/assets/imgs/mobile1.png" height="15%" style="float: left"/><img src="frontend/src/assets/imgs/mobile2.png" height="15%" style="float: right;"/>
 
 ## Game Flow
 1. **Game Start**:
@@ -30,6 +28,8 @@ This is a **Simon Says** game built with a modern tech stack, offering an intera
 
 4. **Restart**:
    - The player can restart the game to try to beat their previous score.
+
+<img src="frontend/src/assets/imgs/desktop2.png" height="50%"/>
 
 ## Technologies Used
 
